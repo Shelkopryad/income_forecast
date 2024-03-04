@@ -1,0 +1,13 @@
+<div class="row">
+  <% @daily_expenses.each do |de| %>
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body>">
+          <h5 class="card-title"><%= de.category %>: <small><%= de.amount.round(2) %></small></h5>
+          <p class="card-text"><small><%= de.expense_date.strftime('%Y-%m-%d') %></small></p>
+        </div>
+      </div>
+      <br />
+    </div>
+  <% end %>
+</div>

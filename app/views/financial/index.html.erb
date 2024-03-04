@@ -1,0 +1,38 @@
+<% unless @fin_month.nil? %>
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= Date::MONTHNAMES[@fin_month.month] %>, <%= @fin_month.year %></h5>
+          <p class="card-text">Salary: <%= @fin_month.monthly_salary %></p>
+          <p class="card-text">Planned expense: <%= @fin_month.projected_expense.round(2) %></p>
+          <p class="card-text">Actual expense: <%= @fin_month.actual_expense.round(2) %></p>
+          <p class="card-text">Actual income: <%= @fin_month.calculate_actual_income.round(2) %></p>
+          <%= link_to 'Show history', current_month_history_path, { class: "btn btn-light" } %>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <%= form_with model: @daily_expense, url: new_expense_path do |form| %>
+        <div class="col-5">
+          <%= form.label :make_an_expense, class: "form-label" %><br>
+          <%= form.text_field :amount, class: "form-control" %>
+        </div>
+        <br />
+
+        <div class="col-5">
+          <%= form.label :category, class: "form-label" %><br>
+          <%= form.select :category, DailyExpense.categories, {}, { class: "form-select" } %>
+        </div>
+        <br />
+
+        <div class="col-5">
+          <%= form.submit 'Add', { class: "btn btn-light" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<br/>
+<%= link_to 'Start new month', new_financial_path, { class: "btn btn-light" } %>

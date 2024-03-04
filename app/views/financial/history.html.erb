@@ -1,0 +1,14 @@
+<div class="row">
+  <% @fin_months.each do |fin| %>
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body>">
+          <h5 class="card-title"><%= Date::MONTHNAMES[fin.month] %>, <%= fin.year %>: <%= fin.monthly_salary %></h5>
+          <p class="card-text"><small>Planned: <%= fin.projected_expense.round(2) %></small></p>
+          <p class="card-text"><span>Actual: <%= fin.actual_expense.round(2) %></span></p>
+        </div>
+      </div>
+      <br />
+    </div>
+  <% end %>
+</div>
